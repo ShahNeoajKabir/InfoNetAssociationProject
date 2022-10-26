@@ -1,0 +1,102 @@
+<section class="mt-5 mb-5">
+  <div class="container">
+      <div class="card">
+          <div class="card-header py-2">
+              <h4 class="text-center mb-0"> Country</h4>
+          </div>
+      </div>
+      <div class="row mt-5">
+          <div class="col-md-7">
+              <div class="input-group">
+                  <input id="country" class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                      autocomplete="off" placeholder="search countryName">
+              </div>
+          </div>
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-3">
+              <button class="btn btn-success mx-2" (click)="openModalForSave(modalForSave)"
+                  style="padding-left:8%;padding-right:8%; background-color: #256D85;"> <i
+                      class="fa-solid fa-plus"></i>
+                  Add </button>
+
+          </div>
+
+
+      </div>
+  </div>
+</section>
+
+
+<section class="mt-3">
+  <div class="container">
+      <div #tableListPdf class="tableListPdf" style="max-height: 450px; overflow:scroll;width: 100%;">
+          <table id="example" class="table table-striped" style="width: 100%;">
+              <thead>
+                  <tr>
+                      <th scope="col">SN.</th>
+                      <th scope="col">Country Name</th>
+                      <th scope="col">Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let country of lstCountrysModel;let i= index">
+                      <td>{{i+1}}</td>
+                      <td>{{country.countryName}}</td>
+                      <td>
+                          <div class="row">
+                              <div class="col-sm-2">
+                                  <button class="btn btn-sm btn-info" ><i
+                                          class="fa-solid fa-pen-to-square"></i></button>
+                              </div>
+                              <div class="col-sm-2">
+                                <button class="btn btn-sm btn-danger" (click)="delete(country.id, deleteModal)"><i
+                                        class="fa-solid fa-trash"></i></button>
+                            </div>
+                          </div>
+                      </td>
+
+              </tbody>
+          </table>
+      </div>
+
+  </div>
+</section>
+<ng-template #modalForSave>
+  <div class="row">
+      <div class="card  text-center" style="border:none">
+          <form [formGroup]="moduleForm">
+              <div class="card-header text-center pt-4 pb-4" style="border:none ;background-color:#F2F2F2 ">
+                  <h3>Country Entry</h3>
+              </div>
+              <div class="card-body" style="background-color:#F2F2F2">
+                  <div class="row">
+                      <div class="col-md-3 text-start">
+                          <Label>Country Name</Label>
+                      </div>
+                      <div class="col-md-8">
+                        <input class="form-control" formControlName="countryName" type="text" placeholder="Enter Country Name">
+
+                      </div>
+                  </div>
+                  <div class="row mt-4 ">
+                      <div class="col-md-3 ">
+                      </div>
+                      <div class="col-md-8 text-start">
+                          <button class="btn btn-success" (click)="saveCountry()"
+                              style="padding-left:8%;padding-right:8%;">
+                              Save</button>
+                          <button class="btn btn-primary" (click)="reset();"
+                              style="margin-left:1%; padding-left:8%;padding-right:8%;"> Reset</button>
+                      </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</ng-template>
+
+<ng-template #deleteModal>
+  <app-delete-confirmation [rowId]="selectedItemId" (onConfirmedId)="removeDetailFormRow($event)">
+  </app-delete-confirmation>
+</ng-template>

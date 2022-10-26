@@ -1,0 +1,224 @@
+<section class="mt-5 mb-5">
+  <div class="container">
+      <div class="card">
+          <div class="card-header py-2">
+              <h4 class="text-center mb-0"> Member Personal Info</h4>
+          </div>
+      </div>
+      <div class="row mt-5">
+          <div class="col-md-7">
+              <div class="input-group">
+                  <input id="member" class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                      autocomplete="off" placeholder="search Member Name">
+              </div>
+          </div>
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-3">
+              <button class="btn btn-success mx-2" (click)="openModalForSave(modalForSave)"
+                  style="padding-left:8%;padding-right:8%; background-color: #256D85;"> <i
+                      class="fa-solid fa-plus"></i>
+                  Add </button>
+
+          </div>
+
+
+      </div>
+  </div>
+</section>
+
+
+<section class="mt-3">
+  <div class="container">
+      <div #tableListPdf class="tableListPdf" style="max-height: 450px; overflow:scroll;width: 100%;">
+          <table id="example" class="table table-striped" style="width: 100%;">
+              <thead>
+                  <tr>
+                      <th scope="col">SN.</th>
+                      <th scope="col">Member Name</th>
+                      <th scope="col">Country Name</th>
+                      <th scope="col">City Name</th>
+                      <th scope="col">Skill</th>
+                      <th scope="col">Resume</th>
+                      <th scope="col">Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let personInfo of lstPersonInfo;let i= index ">
+                      <td>{{i+1}}</td>
+                      <td>{{personInfo.memberName}}</td>
+                      <td>{{personInfo.countryName}}</td>
+                      <td>{{personInfo.cityName}}</td>
+                      <td >{{personInfo.languageSkill}}</td>
+                      <td (click)="downloadPdf(personInfo.imageBase64,personInfo.documents)">{{personInfo.documents}} <i class="fa-light fa-download"></i></td>
+                      <td>
+                        <div class="row">
+                          <div class="col-sm-2">
+                            <button class="btn btn-sm btn-success"
+                                (click)="viewInfo(personInfo,viewInfos)"><i class="fa-regular fa-eye"></i></button>
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-sm btn-info" (click)="editMemberInfo(personInfo.id,modalForSave)"><i
+                                        class="fa-solid fa-pen-to-square"></i></button>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <button class="btn btn-sm btn-danger" (click)="delete(personInfo.id, deleteModal)"><i
+                                        class="fa-solid fa-trash"></i></button>
+                            </div>
+
+                        </div>
+                    </td>
+              </tbody>
+          </table>
+      </div>
+ </div>
+</section>
+<ng-template #modalForSave>
+  <div class="row">
+      <div class="card  text-center" style="border:none">
+          <form [formGroup]="moduleForm">
+              <div class="card-header text-center pt-4 pb-4" style="border:none ;background-color:#F2F2F2 ">
+                  <h3>Personal Information</h3>
+              </div>
+              <div class="card-body" style="background-color:#F2F2F2">
+
+                <div class="row">
+                  <div class="col-md-3 text-start">
+                      <Label> Name</Label>
+                  </div>
+                  <div class="col-md-8">
+                    <input class="form-control" formControlName="memberName" type="text" placeholder="Enter Member Name">
+
+                  </div>
+              </div>
+                <div class="row">
+                  <div class="col-md-3 text-start">
+                      <Label>Country </Label>
+                  </div>
+                  <div class="col-md-8">
+                      <ng-select name="countryId" class="form-control" formControlName="countryId" [items]="lstCountrysModel" bindLabel="countryName" (change)="getByCountryId($event.id)" bindValue="id" placeholder="Select Country">
+                      </ng-select>
+                  </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col-md-3 text-start">
+                    <Label>City Name</Label>
+                </div>
+                <div class="col-md-8">
+                  <ng-select  class="form-control" formControlName="cityId" [items]="lstCityModel" bindLabel="cityName"  bindValue="id" placeholder="Select City">
+                  </ng-select>
+                 </div>
+
+            </div>
+
+            <div class="row mt-2 checkBoxList">
+              <div class="col-md-3 text-start">
+                  <Label>Language Skills</Label>
+              </div>
+              <div class="col-md-8">
+                  <li *ngFor="let item of lstLanguage" >
+                    <input type="checkbox" [checked]="getSelection(item)" (change)="changeHandler(item)">
+                    <label>{{item.languageName}}</label>
+                  </li>
+
+               </div>
+
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-3 text-start">
+                <Label>Date Of Birth </Label>
+            </div>
+            <div class="col-md-8">
+              <app-date-control [showCurrentDate]="true" [setNgbDate]="formVal.reqDateNgb"
+              (getYyyymmdd)="moduleForm.patchValue({date: $event })">
+            </app-date-control>
+             </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-form-label  col-md-4 text-md-right">File
+        </label>
+          <div class="col-md-8">
+              <app-image-control   [fieldId]="'pictureFileName'" (getFileOnChange)="f['imageFile'].setValue($event)" [previewImg]="formVal.filePath"></app-image-control>
+          </div>
+      </div>
+                  <div class="row mt-4 ">
+                      <div class="col-md-3 ">
+                      </div>
+                      <div class="col-md-8 text-start">
+                          <button class="btn btn-success" (click)="saveMemberPerson()"
+                              style="padding-left:8%;padding-right:8%;">
+                              Save</button>
+                          <button class="btn btn-primary" (click)="reset();"
+                              style="margin-left:1%; padding-left:8%;padding-right:8%;"> Reset</button>
+                      </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</ng-template>
+
+
+<ng-template #viewInfos>
+  <h1 class=" text-center">Member Personal Information</h1>
+  <div class="col-lg-12">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Member Name :</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">{{this.memberInfo.memberName}}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Country :</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">{{this.memberInfo.countryName}}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">City Name :</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">{{this.memberInfo.cityName}}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Skill :</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">{{this.memberInfo.languageSkill}}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Date Of Birth :</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">{{this.memberInfo.date}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+</ng-template>
+
+
+<ng-template #deleteModal>
+  <app-delete-confirmation [rowId]="selectedItemId" (onConfirmedId)="removeDetailFormRow($event)">
+  </app-delete-confirmation>
+</ng-template>

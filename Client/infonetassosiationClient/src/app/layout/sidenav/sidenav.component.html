@@ -1,0 +1,26 @@
+<sidenav [orientation]="orientation">
+    <div class="sidenav-inner d-flex  justify-content-between align-items-center" style="background-color:#06283D;" [ngClass]="{ 'py-1': orientation !== 'horizontal' }">
+        <div class="d-flex  justify-content-between align-items-center">
+        <sidenav-router-link icon="" class="mr-auto"  route="/" >{{companyName}} - Head Office
+        </sidenav-router-link>
+        </div>
+        <ng-container>
+            <sidenav-menu>
+                <sidenav-menu ></sidenav-menu>
+                <sidenav-router-link>
+                   </sidenav-router-link>
+            </sidenav-menu>
+
+
+        </ng-container>
+    <ng-container *ngFor="let page of pageList">
+        <sidenav-router-link
+            [route]="'/'+page.pageRoutePath"
+            >{{page.name}}
+        </sidenav-router-link>
+    </ng-container>
+        <sidenav-router-link icon="" class="ml-auto"  >
+            UserName <span class="bg-dark p-2 ml-auto" style="text-decoration: none;">Shah Neoaj Kabir</span>
+        </sidenav-router-link>
+ </div>
+</sidenav>

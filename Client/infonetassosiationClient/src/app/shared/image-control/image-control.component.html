@@ -1,0 +1,6 @@
+<div class="custom-file">
+  <input  (change)="onImageChange($any($event.target)?.files); onChangeFile($any($event.target)?.files)"
+  [ngClass]="{'is-invalid':isRequired}"
+  type="file" class="custom-file-input" accept=".pdf, .docs" [multiple]="false">
+  <label class="custom-file-label" [id]="fieldId" for="imageFile">Choose file...</label>
+</div>
