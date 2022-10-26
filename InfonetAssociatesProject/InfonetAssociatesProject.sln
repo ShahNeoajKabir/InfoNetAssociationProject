@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{CA095118-D972-4DBB-AB89-B6A5947E12C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{B8EC319A-F739-4336-8BDB-94A41CD03733}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BLLManager", "BLLManager", "{935CD829-2ECB-406F-B1ED-A8B848ABEDEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfonetAssociates.Services", "InfonetAssociates.Services\InfonetAssociates.Services.csproj", "{C5483458-9E90-4FAD-BAEA-540F7EC281FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfonetAssociates.DAL", "InfonetAssociates.DAL\InfonetAssociates.DAL.csproj", "{83BDD91F-6CD6-4AA7-89CF-CFED45B2509C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrustructure", "Infrustructure", "{5BD15ED6-1F4E-443B-9F8C-0F5A61F6F947}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfonetAssociates.Infrustructure", "InfonetAssociates.Infrustructure\InfonetAssociates.Infrustructure.csproj", "{595FA174-E77C-4DB4-9333-3B07ED5B290B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfonetAssociates.BLLManager", "InfonetAssociates.BLLManager\InfonetAssociates.BLLManager.csproj", "{F99352AC-8CC0-4B5F-BD6E-433B86A6D62C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5483458-9E90-4FAD-BAEA-540F7EC281FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5483458-9E90-4FAD-BAEA-540F7EC281FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5483458-9E90-4FAD-BAEA-540F7EC281FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5483458-9E90-4FAD-BAEA-540F7EC281FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83BDD91F-6CD6-4AA7-89CF-CFED45B2509C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83BDD91F-6CD6-4AA7-89CF-CFED45B2509C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83BDD91F-6CD6-4AA7-89CF-CFED45B2509C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83BDD91F-6CD6-4AA7-89CF-CFED45B2509C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{595FA174-E77C-4DB4-9333-3B07ED5B290B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{595FA174-E77C-4DB4-9333-3B07ED5B290B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{595FA174-E77C-4DB4-9333-3B07ED5B290B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{595FA174-E77C-4DB4-9333-3B07ED5B290B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F99352AC-8CC0-4B5F-BD6E-433B86A6D62C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F99352AC-8CC0-4B5F-BD6E-433B86A6D62C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F99352AC-8CC0-4B5F-BD6E-433B86A6D62C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F99352AC-8CC0-4B5F-BD6E-433B86A6D62C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C5483458-9E90-4FAD-BAEA-540F7EC281FD} = {CA095118-D972-4DBB-AB89-B6A5947E12C5}
+		{83BDD91F-6CD6-4AA7-89CF-CFED45B2509C} = {B8EC319A-F739-4336-8BDB-94A41CD03733}
+		{595FA174-E77C-4DB4-9333-3B07ED5B290B} = {5BD15ED6-1F4E-443B-9F8C-0F5A61F6F947}
+		{F99352AC-8CC0-4B5F-BD6E-433B86A6D62C} = {935CD829-2ECB-406F-B1ED-A8B848ABEDEA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F565AA9-E25E-40BE-9045-A6E32071D5B5}
+	EndGlobalSection
+EndGlobal
